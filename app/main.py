@@ -2,8 +2,8 @@ import asyncio
 from aiogram.types import BotCommand, BotCommandScopeDefault
 from loguru import logger
 
-from bot.config import bot, admins, dp
-from bot.users.router import user_router
+from app.config import bot, admins, dp
+from app.users.router import user_router
 
 
 # Функция, которая настроит командное меню (дефолтное для всех пользователей)

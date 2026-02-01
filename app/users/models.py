@@ -2,7 +2,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import BigInteger
 
 from typing import Optional
-from bot.database import Base
+from app.database import Base
 
 
 class User(Base):

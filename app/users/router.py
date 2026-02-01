@@ -3,10 +3,10 @@ from loguru import logger
 from aiogram.types import Message
 from aiogram.dispatcher.router import Router
 
-from bot.database import connection
-from bot.users.dao import UserDAO
-from bot.users.schemas import TelegramIDModel, UserModel
-from bot.users.utils import get_refer_id_or_none
+from app.database import connection
+from app.users.dao import UserDAO
+from app.users.schemas import TelegramIDModel, UserModel
+from app.users.utils import get_refer_id_or_none
 
 user_router = Router()
 

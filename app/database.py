@@ -1,7 +1,7 @@
 from datetime import datetime
 from functools import wraps
 
-from bot.config import database_url
+from app.config import database_url
 from sqlalchemy import func, TIMESTAMP, Integer, text
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine, AsyncSession

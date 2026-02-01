@@ -18,7 +18,7 @@
 ### Структура проекта
 
 ```
-├── bot/
+├── app/
 │   ├── migration/
 │   │   ├── versions
 │   │   ├── env.py
@@ -124,8 +124,8 @@ class Base(AsyncAttrs, DeclarativeBase):
 Сервис-специфичные DAO наследуются от BaseDAO:
 
 ```python
-from bot.dao.base import BaseDAO
-from bot.users.models import User
+from app.dao.base import BaseDAO
+from app.users.models import User
 
 class UserDAO(BaseDAO):
     model = User
@@ -162,15 +162,15 @@ alembic upgrade head
 
 ## Главный файл
 
-В корне папки bot есть файл `main.py`. Это основной файл проекта через который происходит сборка и запуск телеграмм бота. В этот файл импортируются роутеры, прописываются функции запупска и завершения работы бота, прписываются логи и прочее.
+В корне папки app есть файл `main.py`. Это основной файл проекта через который происходит сборка и запуск телеграмм бота. В этот файл импортируются роутеры, прописываются функции запупска и завершения работы бота, прписываются логи и прочее.
 
 ```python
 import asyncio
 from aiogram.types import BotCommand, BotCommandScopeDefault
 from loguru import logger
 
-from bot.config import bot, admins, dp
-from bot.users.router import user_router
+from app.config import bot, admins, dp
+from app.users.router import user_router
 
 
 # Функция, которая настроит командное меню (дефолтное для всех пользователей)
@@ -237,7 +237,7 @@ pip install -r requirements.txt
 1. Запустите бота:
 
 ```bash
-python -m bot.main
+python -m app.main
 ```
 
 ## Лучшие практики

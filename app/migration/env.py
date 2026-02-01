@@ -9,8 +9,8 @@ from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 from alembic import context
-from bot.database import Base, database_url
-from bot.users.models import User
+from app.database import Base, database_url
+from app.users.models import User
 
 config = context.config
 config.set_main_option("sqlalchemy.url", database_url)
