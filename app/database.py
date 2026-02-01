@@ -1,13 +1,16 @@
 from datetime import datetime
 from functools import wraps
 
-from app.config import database_url
+from app.config import get_db_url
 from sqlalchemy import func, TIMESTAMP, Integer, text
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine, AsyncSession
 
-engine = create_async_engine(url=database_url)
-async_session_maker = async_sessionmaker(engine, class_=AsyncSession)
+DATABASE_URL = get_db_url()
+database_url = DATABASE_URL  # Alias for alembic compatibility
+engine = create_async_engine(DATABASE_URL)
+async_session_maker = async_sessionmaker(engine, expire_on_commit=False)
+
 
 
 def connection(isolation_level=None):
