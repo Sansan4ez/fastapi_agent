@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "acp-sdk>=0.6.0",
     "aiogram==3.13.1",
     "aiosqlite==0.20.0",
     "alembic==1.13.3",
@@ -18,6 +19,36 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "anyio>=4.0.0",
+    "coverage>=7.4.0",
     "pytest>=9.0.2",
     "pytest-asyncio>=1.3.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.12.0",
+    "respx>=0.22.0",
 ]
+
+[tool.pytest.ini_options]
+# Test discovery
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+# Asyncio configuration
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+
+# Output configuration
+addopts = "-v --tb=short"
+
+# Markers
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+# Logging
+log_cli = true
+log_cli_level = "INFO"

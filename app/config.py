@@ -19,6 +19,9 @@ class Settings(BaseSettings):
     DB_NAME: str
     DB_USER: str
     DB_PASSWORD: str
+    # ACP (Agent Communication Protocol) settings
+    ACP_SERVER_URL: str = "http://localhost:8000"
+    ACP_REQUEST_TIMEOUT: int = 60  # seconds
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
     )
@@ -38,4 +41,4 @@ admins = settings.ADMIN_IDS
 
 log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "log.txt")
 logger.add(log_file_path, format=settings.FORMAT_LOG, level="INFO", rotation=settings.LOG_ROTATION)
-database_url = settings.DB_URL
+database_url = get_db_url()

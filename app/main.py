@@ -4,11 +4,18 @@ from loguru import logger
 
 from app.config import bot, admins, dp
 from app.users.router import user_router
+from app.acp.router import router as acp_router
 
 
 # Функция, которая настроит командное меню (дефолтное для всех пользователей)
 async def set_commands():
-    commands = [BotCommand(command='start', description='Старт')]
+    commands = [
+        BotCommand(command='start', description='Старт'),
+        BotCommand(command='agents', description='List available ACP agents'),
+        BotCommand(command='agent', description='Invoke an ACP agent'),
+        BotCommand(command='acp_status', description='Check ACP server status'),
+        BotCommand(command='acp_help', description='ACP commands help'),
+    ]
     await bot.set_my_commands(commands, BotCommandScopeDefault())
 
 
@@ -36,6 +43,7 @@ async def stop_bot():
 async def main():
     # регистрация роутеров
     dp.include_router(user_router)
+    dp.include_router(acp_router)
 
     # регистрация функций
     dp.startup.register(start_bot)
